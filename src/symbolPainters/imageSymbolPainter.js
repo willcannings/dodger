@@ -17,11 +17,11 @@ ImageSymbolPainter.prototype = {
   drawSymbol: function(paper, point) {
     var x = point.x - this.halfWidth();
     var y = point.y - this.halfHeight();
-    point.shape = paper.image(this.image.src, x, y, this.image.width, this.image.height);
-  
+    point.symbolShape = paper.image(this.image.src, x, y, this.image.width, this.image.height);
+    point.symbolShape.topY = y;
     if(this.animation) {
-      point.shape.attr(this.animation.from);
-      point.shape.animate(this.animation.to, this.animation.duration, this.animation.easing);
+      point.symbolShape.attr(this.animation.from);
+      point.symbolShape.animate(this.animation.to, this.animation.duration, this.animation.easing);
     }
   },
   

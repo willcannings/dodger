@@ -18,10 +18,11 @@ CircleSymbolPainter.defaults = {
 
 CircleSymbolPainter.prototype = {
   drawSymbol: function(paper, point) {
-    point.shape = paper.circle(point.x, point.y, this.radius).attr(this.style);
+    point.symbolShape = paper.circle(point.x, point.y, this.radius).attr(this.style);
+    point.symbolShape.topY = point.y - this.radius;
     if(this.animation) {
-      point.shape.attr(this.animation.from);
-      point.shape.animate(this.animation.to, this.animation.duration, this.animation.easing);
+      point.symbolShape.attr(this.animation.from);
+      point.symbolShape.animate(this.animation.to, this.animation.duration, this.animation.easing);
     }
   }
 }

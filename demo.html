@@ -8,7 +8,7 @@
     <script src="src/graphPainters/lineGraphPainter.js"></script>
     <script src="src/symbolPainters/circleSymbolPainter.js"></script>
     <script src="src/symbolPainters/imageSymbolPainter.js"></script>
-    <script src="src/labelPainters/contextBoxLabelPrinter.js"></script>
+    <script src="src/labelPainters/contextBoxLabelPainter.js"></script>
   </head>
   <body>
     <div id="graph" style="width: 500; height: 200;"></div>
@@ -24,7 +24,18 @@
       graph.addLineGraph({
         series: new Series([
           {x: 0, y: 300},
-          {x: 15, y: 270},
+          {x: 15, y: 270,
+          symbol: new ImageSymbolPainter({
+              image: {
+                src: 'images/point_dollar.png',
+                width: 16,
+                height: 26
+              }
+            }),
+          label: new ContextBoxLabelPainter(),
+          label1: 'It costs',
+          label2: '$90 today'
+          },
           {x: 20, y: 200}
         ]),
         smooth: true,
@@ -37,8 +48,14 @@
         symbols: new ImageSymbolPainter({
           image: {
             src: 'images/point.png',
-            width: 12,
-            height: 12
+            width: 15,
+            height: 15
+          },
+          animation: {
+            duration: 1000,
+            easing: 'bounce',
+            from: {scale: '0.001 0.001', opacity: 0.0},
+            to: {scale: '0.9 0.9', opacity: 1.0}
           }
         })
       });
