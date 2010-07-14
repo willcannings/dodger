@@ -3,7 +3,6 @@ var GraphPaperAxisPainter = function(options) {
 }
 
 GraphPaperAxisPainter.defaults = {
-  graph: null,
   length: 15,
   style: {
     fill: '#fff',
@@ -19,15 +18,15 @@ GraphPaperAxisPainter.defaults = {
 
 GraphPaperAxisPainter.prototype = {
   draw: function() {
-    var boxesWide = Math.ceil((this.graph.width - (2 * this.graph.gutter)) / this.boxSize);
-    var boxesHigh = Math.ceil((this.graph.height - (2 * this.graph.gutter)) / this.boxSize);
+    var boxesWide = Math.ceil((this.graph.width - (2 * this.graph.gutter)) / this.length);
+    var boxesHigh = Math.ceil((this.graph.height - (2 * this.graph.gutter)) / this.length);
     var paper  = this.graph.paper;
     var boxSet = paper.set();
     var offset = this.graph.gutter + 0.5;
     
     for(var x = 0; x < boxesWide; x++)
       for(var y = 0; y < boxesHigh; y++)
-        boxSet.push(paper.rect((x * this.boxSize) + offset, (y * this.boxSize) + offset, this.boxSize, this.boxSize));
+        boxSet.push(paper.rect((x * this.length) + offset, (y * this.length) + offset, this.length, this.length));
     boxSet.attr(this.style);
     
     if(this.animation) {
